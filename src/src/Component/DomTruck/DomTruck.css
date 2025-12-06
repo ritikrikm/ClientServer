@@ -1,0 +1,232 @@
+.truck-track-layer {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  overflow: visible;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.truck-wrapper {
+  position: absolute;
+  left: -250px;
+  bottom: 10px;
+  width: 180px;
+  height: 90px;
+
+  --traverse-dist: calc(100vw + 400px);
+
+  animation-name: driveAcrossScreen;
+  animation-duration: var(--duration);
+  animation-delay: var(--delay);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes driveAcrossScreen {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--traverse-dist));
+  }
+}
+
+.truck-cargo-stack {
+  position: absolute;
+  bottom: 26px;
+  left: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2px;
+  z-index: 5;
+  animation: cargoRattle 0.3s infinite alternate ease-in-out;
+}
+
+.truck-cargo-stack.dropping {
+  animation: cargoDropAndStay var(--duration) linear forwards;
+  animation-delay: var(--drop-time);
+}
+
+@keyframes cargoDropAndStay {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  3% {
+    transform: translate(-10px, 60px) rotate(-90deg);
+  }
+  100% {
+    transform: translate(calc(var(--traverse-dist) * -1), 60px) rotate(-90deg);
+  }
+}
+
+.dom-node-box {
+  width: 46px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--color-golden-batter), #c9b48e);
+  border: 2px solid var(--color-spiced-wine);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.node-tag {
+  font-family: "Courier New", monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--color-cowhide-cocoa);
+}
+
+.truck-body-group {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.3));
+}
+
+.truck-cab-detailed {
+  position: relative;
+  width: 60px;
+  height: 55px;
+  background: linear-gradient(to bottom, var(--color-olive-harvest), #7a6f4a);
+  border-radius: 4px 15px 4px 4px;
+  border: 2px solid var(--color-cowhide-cocoa);
+  z-index: 2;
+  margin-left: -2px;
+}
+
+.truck-bed-detailed {
+  position: relative;
+  width: 110px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--color-toasted-caramel), #6b4823);
+  border: 2px solid var(--color-cowhide-cocoa);
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  z-index: 1;
+}
+.truck-bed-detailed::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.05) 10px,
+    rgba(0, 0, 0, 0.05) 12px
+  );
+  opacity: 0.5;
+}
+
+.cab-window {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 22px;
+  background: linear-gradient(to bottom right, #dbeeff, #a8d0f0);
+  border-radius: 2px 10px 2px 2px;
+  border: 2px solid var(--color-cowhide-cocoa);
+  overflow: hidden;
+}
+.cab-window::after {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(-30deg) translateY(-35px);
+}
+.cab-grille {
+  position: absolute;
+  bottom: 8px;
+  right: 4px;
+  width: 8px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.grille-line {
+  height: 2px;
+  background: var(--color-cowhide-cocoa);
+  border-radius: 1px;
+}
+
+.truck-wheels-group {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 34px;
+  z-index: 3;
+}
+.wheel-detailed {
+  position: absolute;
+  bottom: 0;
+  width: 34px;
+  height: 34px;
+  background: #2a2a2a;
+  border-radius: 50%;
+  border: 3px solid #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.wheel-detailed.back {
+  left: 20px;
+}
+.wheel-detailed.front {
+  right: 10px;
+}
+
+.wheel-hubcap {
+  width: 18px;
+  height: 18px;
+  background: #777;
+  border-radius: 50%;
+  border: 2px solid #555;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.wheel-hubcap::after {
+  content: "• • •";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #bbb;
+  font-size: 10px;
+  line-height: 0;
+}
+
+@keyframes cargoRattle {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1.5px);
+  }
+}
+
+@keyframes spinWheel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

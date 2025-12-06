@@ -1,0 +1,75 @@
+:root {
+  --color-cowhide-cocoa: #442d1c;
+  --color-spiced-wine: #743014;
+  --color-toasted-caramel: #84592b;
+  --color-olive-harvest: #9d9167;
+  --color-golden-batter: #e8d1a7;
+
+  --bg-primary: var(--color-cowhide-cocoa);
+  --bg-secondary: var(--color-spiced-wine);
+  --text-primary: var(--color-golden-batter);
+  --text-secondary: var(--color-olive-harvest);
+  --accent: var(--color-toasted-caramel);
+  --border: var(--color-toasted-caramel);
+}
+
+[data-theme="light"] {
+  --bg-primary: var(--color-golden-batter);
+  --bg-secondary: var(--color-olive-harvest);
+  --text-primary: var(--color-cowhide-cocoa);
+  --text-secondary: var(--color-spiced-wine);
+  --accent: var(--color-spiced-wine);
+  --border: var(--color-cowhide-cocoa);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+button {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+}

@@ -1,0 +1,304 @@
+.landing-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.landing-container.loading-mode {
+  transform: translateY(-42vh);
+}
+
+.landing-container.crash-mode {
+  transform: translateY(-42vh);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.switch-wrapper {
+  margin-bottom: 3rem;
+  transition: opacity 0.5s ease-out;
+}
+.switch-wrapper.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tubelight-wrapper {
+  perspective: 1000px;
+  position: relative;
+  display: inline-block;
+  z-index: 20;
+}
+
+.tubelight-wrapper.falling {
+  animation: crashFall 1.2s cubic-bezier(0.6, 0.04, 0.98, 0.335) forwards,
+    pendulumSwing 3s ease-in-out infinite alternate 1.2s;
+}
+
+.hanging-rope {
+  position: absolute;
+
+  bottom: 60%;
+  width: 4px;
+  height: 0;
+
+  background-color: var(--color-olive-harvest);
+  background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.3) 2px,
+      rgba(0, 0, 0, 0.3) 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 2px,
+      var(--color-golden-batter) 2px,
+      var(--color-golden-batter) 4px
+    );
+
+  border-radius: 0 0 5px 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: -1;
+
+  transform-origin: bottom center;
+}
+
+.hanging-rope.left {
+  left: 25px;
+}
+
+.hanging-rope.right {
+  right: 25px;
+}
+
+.hanging-rope.snapped {
+  animation: ropeGrowUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hanging-rope::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: -4px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-olive-harvest);
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.2s ease-out;
+}
+.hanging-rope.snapped::after {
+  opacity: 1;
+  transform: scale(1);
+}
+.brand-text {
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(1rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .brand-text {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+.flicker-text {
+  color: var(--color-spiced-wine);
+  opacity: 0.3;
+  position: relative;
+  transition: opacity 0.1s;
+}
+
+.delay-short {
+  animation: turnOn 2s linear forwards 0.5s;
+}
+.delay-medium {
+  animation: turnOn 2s linear forwards 1.2s;
+}
+.delay-long {
+  animation: turnOn 1s linear forwards 2s;
+}
+
+@keyframes turnOn {
+  0% {
+    opacity: 0.3;
+    color: var(--color-spiced-wine);
+    text-shadow: none;
+  }
+  5% {
+    opacity: 0.4;
+    color: var(--color-spiced-wine);
+  }
+  10% {
+    opacity: 0.8;
+    color: var(--color-golden-batter);
+    text-shadow: 0 0 10px var(--color-toasted-caramel);
+  }
+  15% {
+    opacity: 0.3;
+    color: var(--color-spiced-wine);
+    text-shadow: none;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  25% {
+    opacity: 0.9;
+    color: var(--color-golden-batter);
+    text-shadow: 0 0 15px var(--color-toasted-caramel);
+  }
+  30% {
+    opacity: 0.2;
+    color: var(--color-spiced-wine);
+    text-shadow: none;
+  }
+  35% {
+    opacity: 0.1;
+  }
+  40% {
+    opacity: 1;
+    color: var(--color-golden-batter);
+    text-shadow: 0 0 20px var(--color-toasted-caramel),
+      0 0 40px var(--color-olive-harvest);
+  }
+  45% {
+    opacity: 0.4;
+    color: var(--color-spiced-wine);
+    text-shadow: none;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  55% {
+    opacity: 0.9;
+    color: var(--color-golden-batter);
+  }
+  60% {
+    opacity: 0.1;
+    color: var(--color-spiced-wine);
+  }
+  100% {
+    opacity: 1;
+    color: var(--color-golden-batter);
+    text-shadow: 0 0 10px var(--color-toasted-caramel),
+      0 0 20px var(--color-olive-harvest), 0 0 40px var(--color-golden-batter);
+  }
+}
+
+.broken-wala {
+  display: inline-block;
+  transform-origin: top left;
+  animation: danglWala 2s ease-out forwards;
+}
+
+.landing-container.crash-mode .flicker-text {
+  color: var(--color-spiced-wine) !important;
+  text-shadow: 0 0 5px red !important;
+}
+
+.landing-container.crash-mode .delay-short {
+  animation: dyingLight 0.15s infinite alternate;
+}
+.landing-container.crash-mode .delay-medium {
+  animation: dyingLight 0.23s infinite alternate;
+}
+.landing-container.crash-mode .delay-long {
+  animation: dyingLight 0.09s infinite alternate;
+}
+
+@keyframes crashFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-20px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(45vh) rotate(-2deg);
+  }
+}
+
+@keyframes ropeGrowUp {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 100vh;
+  }
+}
+
+@keyframes pendulumSwing {
+  0% {
+    transform: translateY(45vh) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(45vh) rotate(2deg);
+  }
+}
+
+@keyframes danglWala {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(55deg);
+  }
+  40% {
+    transform: rotate(35deg);
+  }
+  60% {
+    transform: rotate(50deg);
+  }
+  80% {
+    transform: rotate(42deg);
+  }
+  100% {
+    transform: rotate(45deg) translateY(15px);
+  }
+}
+
+@keyframes dyingLight {
+  0% {
+    opacity: 0.1;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  60% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
