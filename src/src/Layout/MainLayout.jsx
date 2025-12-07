@@ -11,6 +11,7 @@ import {
 } from "../Context/SequenceContext";
 import "./MainLayout.css";
 import MobileBlocker from "../Component/MobileBlocker/MobileBlocker.jsx";
+import SocialStats from "../Component/SocialStats/SocialStats.jsx";
 
 const LayoutContent = () => {
   const { phase } = useSequence();
@@ -18,6 +19,7 @@ const LayoutContent = () => {
   return (
     <div className="main-layout-container">
       <MobileBlocker />
+      {phase !== PHASES.CRASHED && <SocialStats />}
       <Background3D />
       <div
         className={`main-layout-header ${
