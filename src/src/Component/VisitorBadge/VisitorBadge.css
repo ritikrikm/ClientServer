@@ -1,0 +1,90 @@
+.visitor-badge-container {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: auto;
+  height: auto;
+  font-family: "Gochi Hand", cursive, sans-serif;
+  color: var(--color-golden-batter, #f3e5ab);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+.visitor-badge-container:hover {
+  transform: scale(1.05) rotate(0deg);
+}
+
+.visitor-badge-container::before {
+  display: none;
+}
+
+.visitor-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visitor-icon-wrapper svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--color-golden-batter, #f3e5ab);
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 0 2px rgba(243, 229, 171, 0.5));
+}
+
+.visitor-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.9;
+}
+
+.visitor-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+.visitor-count-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.visitor-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.visitor-handle {
+  display: none;
+}
+
+.visitor-live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #4caf50;
+  animation: visitorBlink 2s infinite ease-in-out;
+  margin-top: 5px;
+}
+
+@keyframes visitorBlink {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}

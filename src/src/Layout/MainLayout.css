@@ -8,12 +8,24 @@
   flex-direction: column;
   align-items: center;
 }
-
 .main-layout-header {
   width: 100%;
   flex-shrink: 0;
   z-index: 20;
   transition: all 0.5s ease;
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) auto minmax(320px, 1fr);
+  align-items: start;
+  padding-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .main-layout-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 }
 
 .main-layout-loader {

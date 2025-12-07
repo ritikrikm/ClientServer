@@ -12,6 +12,7 @@ import {
 import "./MainLayout.css";
 import MobileBlocker from "../Component/MobileBlocker/MobileBlocker.jsx";
 import SocialStats from "../Component/SocialStats/SocialStats.jsx";
+import VisitorBadge from "../Component/VisitorBadge/VisitorBadge.jsx";
 
 const LayoutContent = () => {
   const { phase } = useSequence();
@@ -19,14 +20,25 @@ const LayoutContent = () => {
   return (
     <div className="main-layout-container">
       <MobileBlocker />
-      {phase !== PHASES.CRASHED && <SocialStats />}
       <Background3D />
       <div
         className={`main-layout-header ${
           phase !== PHASES.LANDING ? "compact" : ""
         }`}
       >
+        <div style={{ paddingLeft: "20px" }}>
+          <VisitorBadge />
+        </div>
         <Landing />
+        <div
+          style={{
+            paddingRight: "20px",
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          {phase !== PHASES.CRASHED && <SocialStats />}
+        </div>
       </div>
 
       {phase === PHASES.LOADING && (
