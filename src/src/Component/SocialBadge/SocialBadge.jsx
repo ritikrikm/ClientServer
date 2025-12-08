@@ -36,7 +36,7 @@ const SocialBadge = ({ platform, username, keyData, idData, link }) => {
 
         setCount(finalCount);
       } catch (error) {
-        setCount(platform === "ig" ? 3000 : 9999);
+        setCount(platform === "ig" ? "NaN" : 9999);
       } finally {
         setLoading(false);
       }

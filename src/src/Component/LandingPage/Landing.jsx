@@ -11,7 +11,7 @@ const Landing = () => {
   useEffect(() => {
     if (phase !== PHASES.LANDING || !isOn) return;
 
-    const animationDuration = 5500;
+    const animationDuration = 500;
 
     const timer = setTimeout(() => {
       setPhase(PHASES.LOADING);
